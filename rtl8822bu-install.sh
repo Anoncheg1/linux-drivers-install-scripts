@@ -21,20 +21,24 @@ restore() {
 
 RTL=rtl8822b # rtl8812au
 SOURCES_LOCATION="/usr/local/src/"
-FOLDER=88x2bu-20210702
+DRIVER_TAR="/usr/share/rtl88x2bu-driver/rtl88x2bu-driver.tar.gz"
 CONF_MOD=CONFIG_RTL8822BU
 OLD_DRIVER=rtw88
 parentMakefile="/usr/src/linux/drivers/net/wireless/realtek/Makefile"
 parentKconfig="/usr/src/linux/drivers/net/wireless/realtek/Kconfig"
-
+driverDir="/usr/src/linux/drivers/net/wireless/realtek/${RTL}"
 # mkdir -p "/lib/modules/$(uname -r)/build"
 # mkdir -p "/lib/modules/$(cat /usr/src/linux/include/config/kernel.release)/build" # gentoo way
 
 # - Add driver to Kernel source tree
-rm -r /usr/src/linux/drivers/net/wireless/realtek/${RTL} &> /dev/null
-cp -r ${SOURCES_LOCATION}${FOLDER} /usr/src/linux/drivers/net/wireless/realtek/${RTL}
+
+rm -r "$driverDir" &> /dev/null
+
+mkdir "$driverDir"
+tar xpf "$DRIVER_TAR" "$driverDir"
+cp -r ${SOURCES_LOCATION}${FOLDER} "$driverDir"
 # - fix line in Makefile of driver
-sed -i "s/export ${CONF_MOD} = m/export ${CONF_MOD} = y/" /usr/src/linux/drivers/net/wireless/realtek/${RTL}/Makefile
+sed -i "s/export ${CONF_MOD} = m/export ${CONF_MOD} = y/" "$driverDir"/Makefile
 
 # - add line to parent Makefile to our folder
 backup_or_restore "$parentMakefile"
