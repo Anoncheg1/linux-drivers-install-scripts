@@ -20,7 +20,6 @@ restore() {
 
 
 RTL=rtl8822b # rtl8812au
-SOURCES_LOCATION="/usr/local/src/"
 DRIVER_TAR="/usr/share/rtl88x2bu-driver/rtl88x2bu-driver.tar.gz"
 CONF_MOD=CONFIG_RTL8822BU
 OLD_DRIVER=rtw88
@@ -35,8 +34,8 @@ driverDir="/usr/src/linux/drivers/net/wireless/realtek/${RTL}"
 rm -r "$driverDir" &> /dev/null
 
 mkdir "$driverDir"
-tar xpf "$DRIVER_TAR" "$driverDir"
-cp -r ${SOURCES_LOCATION}${FOLDER} "$driverDir"
+tar xpf "$DRIVER_TAR" -C "$driverDir"
+
 # - fix line in Makefile of driver
 sed -i "s/export ${CONF_MOD} = m/export ${CONF_MOD} = y/" "$driverDir"/Makefile
 
