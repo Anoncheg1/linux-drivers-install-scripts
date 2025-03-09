@@ -27,8 +27,7 @@ OLD_DRIVER=rtw88
 parentMakefile="/usr/src/linux/drivers/net/wireless/realtek/Makefile"
 parentKconfig="/usr/src/linux/drivers/net/wireless/realtek/Kconfig"
 
-rm -r "/usr/src/linux/drivers/net/wireless/realtek/${RTL}"
-sed -i '$d' "/usr/src/linux/drivers/net/wireless/realtek/${RTL}/Makefile"
+rm -rf "/usr/src/linux/drivers/net/wireless/realtek/${RTL}" &>/dev/null
 restore "$parentMakefile"
 restore "$parentKconfig"
 restore "/usr/src/linux/drivers/net/wireless/realtek/${OLD_DRIVER}/Kconfig"
