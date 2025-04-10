@@ -18,12 +18,13 @@ restore() {
 }
 
 
-RTL=rtl88x2ce # rtl8812au
-DRIVER_TAR="/usr/share/rtl88x2ce-driver/rtl88x2ce-driver.tar.gz"
+RTL=rtk_wifi_driver_rtl8822ce # directory
+DRIVER_TAR="/usr/share/rtk_wifi_driver_rtl8822ce/rtk_wifi_driver_rtl8822ce.tar.gz"
 CONF_MOD=CONFIG_RTL8822CE
 OLD_DRIVER=rtw88
 parentMakefile="/usr/src/linux/drivers/net/wireless/realtek/Makefile"
 parentKconfig="/usr/src/linux/drivers/net/wireless/realtek/Kconfig"
+driverDir="/usr/src/linux/drivers/net/wireless/realtek/${RTL}"
 
 rm -rf "/usr/src/linux/drivers/net/wireless/realtek/${RTL}" &>/dev/null
 restore "$parentMakefile"
