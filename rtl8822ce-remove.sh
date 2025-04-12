@@ -18,8 +18,8 @@ restore() {
 }
 
 
-RTL=rtk_wifi_driver_rtl8822ce # directory
-DRIVER_TAR="/usr/share/rtl8822ce-driver/rtl8822ce-driver.tar.gz"
+RTL=rtl88x2ce-dkms # directory
+DRIVER_TAR="/usr/share/rtl88x2ce-dkms/rtl88x2ce-dkms.tar.gz"
 CONF_MOD=CONFIG_RTL8822CE
 OLD_DRIVER=rtw88
 parentMakefile="/usr/src/linux/drivers/net/wireless/realtek/Makefile"
